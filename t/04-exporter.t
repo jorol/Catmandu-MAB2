@@ -64,8 +64,8 @@ close($fh);
 $out = do { local ( @ARGV, $/ ) = $filename; <> };
 
 is $out, <<'MABRAW';
-99999nM2.01200024      h001 47918-4406bj1983
-99999nM2.01200024      h406aj1990k2000
+99999nM2.01200024      h001 47918-4406bj1983
+99999nM2.01200024      h406aj1990k2000
 MABRAW
 
 done_testing;
