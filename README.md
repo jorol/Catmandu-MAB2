@@ -12,7 +12,7 @@ Install the latest developer version from GitHub:
 
 # Contribution
 
-For bug reports and feature requests use <https://github.com/gbv/Catmandu-MAB2/issues>.
+For bug reports and feature requests use <https://github.com/jorol/Catmandu-MAB2/issues>.
 
 For contributions to the source code create a fork or use the `devel` branch. The master
 branch should only contain merged and stashed changes to appear in Changelog.
