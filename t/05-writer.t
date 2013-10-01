@@ -23,6 +23,8 @@ my @mab_records = (
     }
 );
 
+$writer->start();
+
 foreach my $record (@mab_records) {
     $writer->write($record);
 }
@@ -32,7 +34,7 @@ $writer->end();
 
 close($fh);
 
-my $out = do { local (@ARGV,$/)=$filename; <> };
+my $out = do { local ( @ARGV, $/ ) = $filename; <> };
 
 is $out, <<'MABXML';
 <?xml version="1.0" encoding="UTF-8"?>
@@ -51,6 +53,7 @@ is $out, <<'MABXML';
 </datensatz>
 </datei>
 MABXML
+
 
 ($fh, $filename) = tempfile();
 $writer = MAB2::Writer::RAW->new( fh => $fh );
