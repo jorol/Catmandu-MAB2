@@ -11,7 +11,6 @@ with 'MAB2::Writer::Handle';
 
 sub BUILD {
     my ($self) = @_;
-    $self->start;
 }
 
 sub start {
