@@ -6,7 +6,13 @@ use Catmandu;
 use Catmandu::Fix;
 use Catmandu::Importer::MAB2;
 
-my $fixer = Catmandu::Fix->new(fixes => ['mab_map("LDR", "leader")','mab_map("001", "id")','mab_map("004", "date")','mab_map("406[b]j", "coverage")','remove_field("record"),','remove_field("_id"),']);
+my $fixer = Catmandu::Fix->new(fixes => [
+	'mab_map("LDR", "leader")',
+	'mab_map("001", "id")',
+	'mab_map("004", "date")',
+	'mab_map("406[b]j", "coverage")',
+	'remove_field("record")',
+	'remove_field("_id")']);
 my $importer = Catmandu::Importer::MAB2->new(file => "./t/mab2.dat", type=> "RAW");
 my @records;
 $fixer->fix($importer)->each(

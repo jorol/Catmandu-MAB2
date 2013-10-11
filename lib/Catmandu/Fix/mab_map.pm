@@ -211,7 +211,7 @@ Catmandu::Fix::mab_map - copy mab values of one field to a new field
     # When 024 field exists create the my.has024 hash with value 'found'
     mab_map('024','my.has024', -value => 'found');
 
-    # Do the same examples now with the marc fields in 'record2'
+    # Do the same examples now with the fields in 'record2'
     mab_map('245','my.title', -record => 'record2');
 
 =cut
