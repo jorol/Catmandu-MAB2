@@ -3,6 +3,8 @@ package MAB2::Parser::XML;
 # ABSTRACT: MAB2 XML parser
 # VERSION
 
+use strict;
+use warnings;
 use Carp qw<croak>;
 use XML::LibXML::Reader;
 

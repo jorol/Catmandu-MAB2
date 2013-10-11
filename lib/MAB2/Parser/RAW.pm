@@ -4,6 +4,7 @@ package MAB2::Parser::RAW;
 # VERSION
 
 use strict;
+use warnings;
 use charnames qw< :full >;
 use Carp qw(croak);
 use Readonly;

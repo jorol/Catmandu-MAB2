@@ -3,6 +3,9 @@ package Catmandu::MAB2;
 # ABSTRACT: Catmandu modules for working with MAB2 data.
 # VERSION
 
+use strict;
+use warnings;
+
 =head1 CATMANDU MODULES
 
 =over
