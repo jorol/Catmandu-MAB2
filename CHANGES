@@ -1,0 +1,13 @@
+Changelog for Catmandu-MAB2
+
+0.01 2013-10-01
+ - added record separator to test data
+ - perltidy
+ - removed start() call from build
+ - added some modules
+ - added Catmandu exporter for MAB2 data
+ - added Makefile.pl
+ - removed github plugins
+ - correction of github URL
+ - initial commit 
+ 
