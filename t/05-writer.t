@@ -8,7 +8,7 @@ use IO::File;
 use Encode qw(encode);
 
 my ($fh, $filename) = tempfile();
-my $writer = MAB2::Writer::XML->new( fh => $fh );
+my $writer = MAB2::Writer::XML->new( fh => $fh, xml_declaration => 1, collection => 1 );
 
 my @mab_records = (
 

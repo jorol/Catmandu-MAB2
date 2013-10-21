@@ -4,55 +4,55 @@ package Catmandu::Exporter::MAB2;
 #VERSION
 
 use Catmandu::Sane;
-use Catmandu::Util qw(xml_escape is_different);
 use MAB2::Writer::RAW;
 use MAB2::Writer::XML;
 use Moo;
 
 with 'Catmandu::Exporter';
 
-has type => ( is => 'ro', trigger => \&_set_writer );
-has xml_declaration => ( is => 'ro' );
-has collection      => ( is => 'ro' );
-has record          => ( is => 'ro', lazy => 1, default => sub {'record'} );
-has writer          => ( is => 'ro' );
+has type            => ( is => 'ro', default => sub {'raw'} );
+has xml_declaration => ( is => 'ro', default => sub {0} );
+has collection      => ( is => 'ro', default => sub {0} );
+has writer          => ( is => 'lazy' );
 
-sub _set_writer {
+sub _build_writer {
     my ($self) = @_;
-    my $writer;
+
     my $type = lc( $self->{type} );
     if ( $type eq 'raw' ) {
-        $writer = MAB2::Writer::RAW->new( fh => $self->fh );
+        MAB2::Writer::RAW->new( fh => $self->fh );
     }
     elsif ( $type eq 'xml' ) {
-        $writer = MAB2::Writer::XML->new( fh => $self->fh );
+        MAB2::Writer::XML->new(
+            fh              => $self->fh,
+            xml_declaration => $self->xml_declaration,
+            collection      => $self->collection
+        );
     }
     else {
-        croak('type not supported!');
+        croak("unknown type: $type");
     }
-
-    $self->{writer} = $writer;
 }
 
 sub add {
     my ( $self, $data ) = @_;
 
     if ( !$self->count ) {
-        if ( $self->xml_declaration and lc( $self->type ) eq 'xml' ) {
-            $self->{writer}->start();
+        if ( lc( $self->type ) eq 'xml' ) {
+            $self->writer->start();
         }
     }
 
-    $self->{writer}->write($data);
+    $self->writer->write($data);
 
 }
 
 sub commit {
     my ($self) = @_;
     if ( $self->collection ) {
-        $self->{writer}->end();
+        $self->writer->end();
     }
-    $self->{writer}->close_fh();
+    $self->writer->close_fh();
 
 }
 

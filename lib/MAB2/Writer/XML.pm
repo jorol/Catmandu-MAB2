@@ -9,16 +9,15 @@ use strict;
 use Moo;
 with 'MAB2::Writer::Handle';
 
-sub BUILD {
-    my ($self) = @_;
-}
+has xml_declaration => ( is => 'ro' , default => sub {0} );
+has collection      => ( is => 'ro' , default => sub {0} );
 
 sub start {
     my ($self) = @_;
 
-    print { $self->fh } "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    print { $self->fh } "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" if $self->xml_declaration;
     print { $self->fh }
-        "<datei xmlns=\"http://www.ddb.de/professionell/mabxml/mabxml-1.xsd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.ddb.de/professionell/mabxml/mabxml-1.xsd http://www.d-nb.de/standardisierung/formate/mabxml-1.xsd\">\n";
+        "<datei xmlns=\"http://www.ddb.de/professionell/mabxml/mabxml-1.xsd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.ddb.de/professionell/mabxml/mabxml-1.xsd http://www.d-nb.de/standardisierung/formate/mabxml-1.xsd\">\n" if $self->collection;
 }
 
 sub _write_record {
@@ -58,7 +57,7 @@ sub _write_record {
 sub end {
     my ($self) = @_;
 
-    print { $self->fh } "</datei>\n";
+    print { $self->fh } "</datei>\n" if $self->collection;
 }
 
 1;
