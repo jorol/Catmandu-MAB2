@@ -5,8 +5,17 @@ package MAB2::Writer::Handle;
 
 use strict;
 use Moo::Role;
-use Scalar::Util qw(blessed openhandle);
 use Carp qw(croak);
+use Encode qw(find_encoding);
+use Scalar::Util qw(blessed openhandle);
+
+has encoding => (
+    is  => 'rw',
+    isa => sub {
+        find_encoding($_[0]) or croak "encoding \"$_[0]\" is not a valid encoding";
+    },
+    default => sub { 'UTF-8' },
+);
 
 has file => (
     is  => 'rw',
@@ -30,7 +39,8 @@ has fh => (
 sub _set_fh {
     my ($self) = @_;
 
-    open my $fh, '>:encoding(UTF-8)', $self->file
+    my $encoding = $self->encoding;
+    open my $fh, ">:encoding($encoding)", $self->file
         or croak 'could not open file!';
     $self->fh($fh);
 }
