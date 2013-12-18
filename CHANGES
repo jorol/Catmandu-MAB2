@@ -1,5 +1,8 @@
 Changelog for Catmandu-MAB2
 
+0.03 2013-12-18
+ - added Parser and Writer for MAB2 Diskette data
+
 0.02 2013-11-22
  - added file encoding
  - added XML declaration and collection handling
