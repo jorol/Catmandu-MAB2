@@ -13,9 +13,49 @@ Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
 Readonly my $END_OF_FIELD       => qq{\N{INFORMATION SEPARATOR TWO}};
 Readonly my $END_OF_RECORD      => qq{\N{INFORMATION SEPARATOR THREE}};
 
+=head1 SYNOPSIS
+
+L<MAB2::Writer::RAW> is a MAB2 serializer.
+
+    use MAB2::Writer::RAW;
+
+    my @mab_records = (
+
+        [
+          ['001', ' ', '_', '2415107-5'],
+          ['331', ' ', '_', 'Code4Lib journal'],
+          ['655', 'e', 'u', 'http://journal.code4lib.org/', 'z', 'kostenfrei'],
+          ...
+        ],
+        {
+          record => [
+              ['001', ' ', '_', '2415107-5'],
+              ['331', ' ', '_', 'Code4Lib journal'],
+              ['655', 'e', 'u', 'http://journal.code4lib.org/', 'z', 'kostenfrei'],
+              ...
+          ]
+        }
+    );
+
+    $writer = MAB2::Writer::RAW->new( fh => $fh );
+
+    foreach my $record (@mab_records) {
+        $writer->write($record);
+    }
+
+=head1 SUBROUTINES/METHODS
+
+=head2 new()
+
+=cut
+
 sub BUILD {
     my ($self) = @_;
 }
+
+=head2 _write_record()
+
+=cut
 
 sub _write_record {
     my ( $self, $record ) = @_;
