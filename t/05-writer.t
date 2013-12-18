@@ -1,6 +1,7 @@
 use utf8;
 use strict;
 use Test::More;
+use MAB2::Writer::Disk;
 use MAB2::Writer::RAW;
 use MAB2::Writer::XML;
 
@@ -90,5 +91,27 @@ is $out, <<'MABRAW';
 99999nM2.01200024      h001 47918-4310 Daß Ümläüt406bj1983
 99999nM2.01200024      h406aj1990k2000
 MABRAW
+
+($fh, $filename) = tempfile();
+$writer = MAB2::Writer::Disk->new( fh => $fh );
+
+foreach my $record (@mab_records) {
+    $writer->write($record);
+}
+
+close($fh);
+
+$out = do { local (@ARGV,$/)=$filename; <> };
+
+is $out, <<'MABDISK';
+### 99999nM2.01200024      h
+001 47918-4
+310 Daß Ümläüt
+406bj1983
+
+### 99999nM2.01200024      h
+406aj1990k2000
+
+MABDISK
 
 done_testing;

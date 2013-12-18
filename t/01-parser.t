@@ -19,4 +19,13 @@ ok($record->{record}->[0][3] eq '02020nM2.01200024      h', 'record leader' );
 is_deeply($record->{record}->[1], ['001', ' ', '_', '47918-4'], 'first field');
 ok($parser->next()->{_id} eq '54251-9', 'next record');
 
+use MAB2::Parser::Disk;
+$parser = MAB2::Parser::Disk->new( './t/mab2disk.dat' );
+isa_ok( $parser, 'MAB2::Parser::Disk' );
+$record = $parser->next();
+ok($record->{_id} eq '47918-4', 'record _id' );
+ok($record->{record}->[0][3] eq '02020nM2.01200024      h', 'record leader' );
+is_deeply($record->{record}->[1], ['001', ' ', '_', '47918-4'], 'first field');
+ok($parser->next()->{_id} eq '54251-9', 'next record');
+
 done_testing();
