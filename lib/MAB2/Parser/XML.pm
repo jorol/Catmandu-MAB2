@@ -12,9 +12,8 @@ use XML::LibXML::Reader;
 
 L<MAB2::Parser::XML> is a parser for MAB2 XML records.
 
-UTF-8...
-
-Catmandu...
+L<MAB2::Parser::XML> expects UTF-8 encoded files as input. Otherwise provide a 
+filehande with a specified I/O layer.
 
     use MAB2::Parser::XML;
 
