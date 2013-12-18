@@ -64,12 +64,37 @@ $exporter->commit();
 
 close($fh);
 
-open my $fh_utf8, '<:encoding(UTF-8)', $filename or die $!;
-$out = do { local $/; <$fh_utf8> };
+open $fh, '<:encoding(UTF-8)', $filename or die $!;
+$out = do { local $/; <$fh> };
 
 is $out, <<'MABRAW';
 99999nM2.01200024      h001 47918-4310 Daß Ümläüt406bj1983
 99999nM2.01200024      h406aj1990k2000
 MABRAW
+
+( $fh, $filename ) = tempfile();
+$exporter = Catmandu::Exporter::MAB2->new( file => $filename, type => 'DISK' );
+
+for my $record (@mab_records) {
+    $exporter->add($record);
+}
+
+$exporter->commit();
+
+close($fh);
+
+open $fh, '<:encoding(UTF-8)', $filename or die $!;
+$out = do { local $/; <$fh> };
+
+is $out, <<'MABDISK';
+### 99999nM2.01200024      h
+001 47918-4
+310 Daß Ümläüt
+406bj1983
+
+### 99999nM2.01200024      h
+406aj1990k2000
+
+MABDISK
 
 done_testing;

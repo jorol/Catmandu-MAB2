@@ -4,6 +4,7 @@ package Catmandu::Exporter::MAB2;
 #VERSION
 
 use Catmandu::Sane;
+use MAB2::Writer::Disk;
 use MAB2::Writer::RAW;
 use MAB2::Writer::XML;
 use Moo;
@@ -22,6 +23,9 @@ sub _build_writer {
     if ( $type eq 'raw' ) {
         MAB2::Writer::RAW->new( fh => $self->fh );
     }
+    elsif ( $type eq 'disk' ) {
+        MAB2::Writer::Disk->new( fh => $self->fh );
+    }
     elsif ( $type eq 'xml' ) {
         MAB2::Writer::XML->new(
             fh              => $self->fh,
@@ -30,7 +34,7 @@ sub _build_writer {
         );
     }
     else {
-        croak("unknown type: $type");
+        die "unknown type: $type";
     }
 }
 
