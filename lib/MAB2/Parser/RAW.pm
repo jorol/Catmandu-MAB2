@@ -21,8 +21,6 @@ L<MAB2::Parser::RAW> is a parser for raw MAB2 records.
 L<MAB2::Parser::RAW> expects UTF-8 encoded files as input. Otherwise provide a 
 filehande with a specified I/O layer.
 
-Catmandu...
-
     use MAB2::Parser::RAW;
 
     my $parser = MAB2::Parser::RAW->new( $filename );
@@ -36,8 +34,6 @@ Catmandu...
 =head2 new
 
 =cut
-
-# ToDo: use Moo
 
 sub new {
     my $class = shift;
