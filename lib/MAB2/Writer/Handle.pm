@@ -4,9 +4,10 @@ package MAB2::Writer::Handle;
 # VERSION
 
 use strict;
-use Moo::Role;
+use charnames ':full';
 use Carp qw(croak);
 use Encode qw(find_encoding);
+use Moo::Role;
 use Scalar::Util qw(blessed openhandle);
 
 has encoding => (
