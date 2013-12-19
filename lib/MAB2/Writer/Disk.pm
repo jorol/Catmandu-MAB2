@@ -10,7 +10,6 @@ with 'MAB2::Writer::Handle';
 use charnames ':full';
 use Readonly;
 
-Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
 Readonly my $END_OF_FIELD       => qq{\n};
 Readonly my $END_OF_RECORD      => qq{\n};
 
@@ -61,6 +60,7 @@ sub BUILD {
 sub _write_record {
     my ( $self, $record ) = @_;
     my $fh = $self->fh;
+    my $subfield_indicator = $self->subfield_indicator;
 
     if ( $record->[0][0] eq 'LDR' ) {
         my $leader = shift( @{$record} );
@@ -81,7 +81,7 @@ sub _write_record {
             for ( my $i = 2; $i < scalar @$field; $i += 2 ) {
                 my $subfield_code = $field->[ $i ];
                 my $value = $field->[ $i + 1 ];
-                print $fh $SUBFIELD_INDICATOR, $subfield_code, $value;
+                print $fh $subfield_indicator, $subfield_code, $value;
             }
             print $fh $END_OF_FIELD;
         }

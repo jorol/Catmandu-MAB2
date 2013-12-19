@@ -103,7 +103,7 @@ close($fh);
 
 $out = do { local (@ARGV,$/)=$filename; <> };
 
-is $out, <<'MABDISK';
+is $out, <<'MABDISK1';
 ### 99999nM2.01200024      h
 001 47918-4
 310 Daß Ümläüt
@@ -112,6 +112,28 @@ is $out, <<'MABDISK';
 ### 99999nM2.01200024      h
 406aj1990k2000
 
-MABDISK
+MABDISK1
+
+($fh, $filename) = tempfile();
+$writer = MAB2::Writer::Disk->new( fh => $fh, subfield_indicator => '$' );
+
+foreach my $record (@mab_records) {
+    $writer->write($record);
+}
+
+close($fh);
+
+$out = do { local (@ARGV,$/)=$filename; <> };
+
+is $out, <<'MABDISK2';
+### 99999nM2.01200024      h
+001 47918-4
+310 Daß Ümläüt
+406b$j1983
+
+### 99999nM2.01200024      h
+406a$j1990$k2000
+
+MABDISK2
 
 done_testing;

@@ -36,6 +36,11 @@ has fh => (
     default => sub { \*STDOUT }
 );
 
+has subfield_indicator => (
+    is  => 'rw',
+    default => sub { qq{\N{INFORMATION SEPARATOR ONE}} }
+);
+
 sub _set_fh {
     my ($self) = @_;
 

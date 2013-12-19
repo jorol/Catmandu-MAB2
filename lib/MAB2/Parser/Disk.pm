@@ -9,7 +9,6 @@ use charnames qw< :full >;
 use Carp qw(croak);
 use Readonly;
 
-Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
 Readonly my $END_OF_FIELD       => qq{\n};
 Readonly my $END_OF_RECORD      => q{};
 
@@ -35,8 +34,6 @@ Catmandu...
 =head2 new
 
 =cut
-
-# ToDo: use Moo
 
 sub new {
     my $class = shift;
@@ -67,7 +64,7 @@ sub new {
 
 =head2 next()
 
-Reads the next record from MAB2 input stream. Returns a Perl hash.
+Reads the next record from MAB2 Diskette input stream. Returns a Perl hash.
 
 =cut
 
@@ -87,7 +84,7 @@ sub next {
 
 =head2 _decode()
 
-Deserialize a raw MAB2 record to an array of field arrays.
+Deserialize a MAB2 Diskette record to an array of field arrays.
 
 =cut
 
@@ -120,12 +117,10 @@ sub _decode {
         # check if indicator is an single alphabetic character
         ( $ind =~ m/^[a-z\s]$/xms ) or croak "Invalid indicator: \"$ind\"";
 
-        # check if data contains subfields
-        if ( $data =~ $SUBFIELD_INDICATOR ) {
-
-            # check if data starts with a SUBFIELD_INDICATOR
-            ( substr( $data, 0, 1 ) eq $SUBFIELD_INDICATOR ) or croak "Invalid subfield structure at: \"$tag$ind\"";
-            my @subfields = split( $SUBFIELD_INDICATOR, substr( $data, 1 ) );
+        # check if data contains subfield indicators
+        if ( $data =~ m/^\s*(\N{INFORMATION SEPARATOR ONE}|\$)(.*)/ ) {
+            my $subfield_indicator = $1;
+            my @subfields = split( $subfield_indicator, $2 );
             ( @subfields ) or croak "no subfield data found: \"$tag$ind$data\"";
             push(
                 @record,

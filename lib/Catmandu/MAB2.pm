@@ -22,9 +22,13 @@ use warnings;
 
 =over
 
+=item * L<MAB2::Parser::Disk>
+
 =item * L<MAB2::Parser::RAW>
 
 =item * L<MAB2::Parser::XML>
+
+=item * L<MAB2::Writer::Disk>
 
 =item * L<MAB2::Writer::RAW>
 

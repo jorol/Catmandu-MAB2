@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 use Test::More;
@@ -26,6 +27,9 @@ $record = $parser->next();
 ok($record->{_id} eq '47918-4', 'record _id' );
 ok($record->{record}->[0][3] eq '02020nM2.01200024      h', 'record leader' );
 is_deeply($record->{record}->[1], ['001', ' ', '_', '47918-4'], 'first field');
-ok($parser->next()->{_id} eq '54251-9', 'next record');
+is_deeply($record->{record}->[24], ['406', 'b', 'j', '1983'], 'subfield');
+$record = $parser->next();
+ok($record->{_id} eq '54251-9', 'next record');
+is_deeply($record->{record}->[18], ['085', 'x', 'a', 'Special'], 'subfield');
 
 done_testing();
