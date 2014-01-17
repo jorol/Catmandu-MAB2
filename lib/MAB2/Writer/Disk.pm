@@ -4,13 +4,18 @@ package MAB2::Writer::Disk;
 #VERSION
 
 use strict;
-use Moo;
-with 'MAB2::Writer::Handle';
-
 use charnames ':full';
 use Readonly;
+use Moo;
 
-Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
+with 'MAB2::Writer::Handle';
+
+has subfield_indicator => (
+    is  => 'rw',
+    default => sub { qq{\N{INFORMATION SEPARATOR ONE}} }
+);
+
+
 Readonly my $END_OF_FIELD       => qq{\N{LINE FEED}};
 Readonly my $END_OF_RECORD      => qq{\N{LINE FEED}};
 
@@ -59,6 +64,7 @@ See L<MAB2::Writer::Handle>.
 sub _write_record {
     my ( $self, $record ) = @_;
     my $fh = $self->fh;
+    my $SUBFIELD_INDICATOR = $self->subfield_indicator;
 
     if ( $record->[0][0] eq 'LDR' ) {
         my $leader = shift( @{$record} );
