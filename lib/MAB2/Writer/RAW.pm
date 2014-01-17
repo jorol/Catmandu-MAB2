@@ -11,7 +11,7 @@ use charnames ':full';
 use Readonly;
 Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
 Readonly my $END_OF_FIELD       => qq{\N{INFORMATION SEPARATOR TWO}};
-Readonly my $END_OF_RECORD      => qq{\N{INFORMATION SEPARATOR THREE}};
+Readonly my $END_OF_RECORD      => qq{\N{INFORMATION SEPARATOR THREE}\N{LINE FEED}};
 
 =head1 SYNOPSIS
 
@@ -43,17 +43,16 @@ L<MAB2::Writer::RAW> is a MAB2 serializer.
         $writer->write($record);
     }
 
-=head1 SUBROUTINES/METHODS
 
-=head2 new()
+=head1 Arguments
 
-=cut
+See L<MAB2::Writer::Handle>.
 
-sub BUILD {
-    my ($self) = @_;
-}
+=head1 METHODS
+  
+=head2 new(file => $file | fh => $fh [, encoding => 'UTF-8'])
 
-=head2 _write_record()
+=head2 _write_record($record)
 
 =cut
 
@@ -85,7 +84,13 @@ sub _write_record {
             print $fh $END_OF_FIELD;
         }
     }
-    print $fh $END_OF_RECORD,"\n";
+    print $fh $END_OF_RECORD;
 }
+
+=head1 SEEALSO
+
+L<MAB2::Writer::Handle>, L<Catmandu::Exporter>.
+
+=cut
 
 1;

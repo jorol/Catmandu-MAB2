@@ -10,8 +10,9 @@ with 'MAB2::Writer::Handle';
 use charnames ':full';
 use Readonly;
 
-Readonly my $END_OF_FIELD       => qq{\n};
-Readonly my $END_OF_RECORD      => qq{\n};
+Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
+Readonly my $END_OF_FIELD       => qq{\N{LINE FEED}};
+Readonly my $END_OF_RECORD      => qq{\N{LINE FEED}};
 
 =head1 SYNOPSIS
 
@@ -43,24 +44,21 @@ L<MAB2::Writer::Disk> is a MAB2 Diskette serializer.
         $writer->write($record);
     }
 
-=head1 SUBROUTINES/METHODS
+=head1 Arguments
 
-=head2 new()
+See L<MAB2::Writer::Handle>.
 
-=cut
+=head1 METHODS
+  
+=head2 new(file => $file | fh => $fh [, encoding => 'UTF-8'])
 
-sub BUILD {
-    my ($self) = @_;
-}
-
-=head2 _write_record()
+=head2 _write_record($record)
 
 =cut
 
 sub _write_record {
     my ( $self, $record ) = @_;
     my $fh = $self->fh;
-    my $subfield_indicator = $self->subfield_indicator;
 
     if ( $record->[0][0] eq 'LDR' ) {
         my $leader = shift( @{$record} );
@@ -81,12 +79,18 @@ sub _write_record {
             for ( my $i = 2; $i < scalar @$field; $i += 2 ) {
                 my $subfield_code = $field->[ $i ];
                 my $value = $field->[ $i + 1 ];
-                print $fh $subfield_indicator, $subfield_code, $value;
+                print $fh $SUBFIELD_INDICATOR, $subfield_code, $value;
             }
             print $fh $END_OF_FIELD;
         }
     }
     print $fh $END_OF_RECORD;
 }
+
+=head1 SEEALSO
+
+L<MAB2::Writer::Handle>, L<Catmandu::Exporter>.
+
+=cut
 
 1;
