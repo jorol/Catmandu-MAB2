@@ -7,6 +7,9 @@ use strict;
 use Moo;
 with 'MAB2::Writer::Handle';
 
+has xml_declaration => ( is => 'ro' , default => sub {0} );
+has collection      => ( is => 'ro' , default => sub {0} );
+
 =head1 SYNOPSIS
 
 L<MAB2::Writer::XML> is a MAB2 XML serializer.
@@ -40,14 +43,25 @@ L<MAB2::Writer::XML> is a MAB2 XML serializer.
 
     $writer->end();
 
-=head1 SUBROUTINES/METHODS
+=head1 Arguments
 
-=head2 new()
+=over
 
-=cut
+=item C<xml_declaration>
 
-has xml_declaration => ( is => 'ro' , default => sub {0} );
-has collection      => ( is => 'ro' , default => sub {0} );
+Write XML declaration. Set to 0 or 1. Default: 0. Optional.
+
+=item C<collection>
+
+Wrap records in collection element (<datei>). Set to 0 or 1. Default: 0. Optional.
+
+=back
+
+See also L<MAB2::Writer::Handle>.
+
+=head1 METHODS
+
+=head2 new(file => $file | fh => $fh [, xml_declaration => 1, collection => 1, encoding => 'UTF-8'])
 
 =head2 start()
 
@@ -112,5 +126,11 @@ sub end {
 
     print { $self->fh } "</datei>\n" if $self->collection;
 }
+
+=head1 SEEALSO
+
+L<MAB2::Writer::Handle>, L<Catmandu::Exporter>.
+
+=cut
 
 1;

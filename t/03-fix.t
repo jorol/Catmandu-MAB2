@@ -27,4 +27,4 @@ ok( $records[0]->{'date'} eq '20110211', 'fix date' );
 ok( $records[0]->{'coverage'} eq '1983', 'fix coverage' );
 is_deeply( $records[0], {'id' => '47918-4', 'date' => '20110211', 'coverage' => '1983', 'leader' => '02020nM2.01200024      h'}, 'fix record');
 
-done_testing();
+done_testing;

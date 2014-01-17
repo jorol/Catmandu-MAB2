@@ -80,15 +80,50 @@ Catmandu::Exporter::MAB2 - serialize parsed MAB2 data
     $exporter->add($data);
     $exporter->commit;
  
- 
+=head1 Arguments
+
+=over
+
+=item C<file>
+
+Path to file with MAB2 records.
+
+=item C<fh>
+
+Open filehandle for file with MAB2 records.
+
+=item C<type>
+
+Specify type of MAB2 records: Disk (Diskette), RAW (Band), XML. Default: 001. Optional. 
+
+=item C<xml_declaration>
+
+Write XML declaration. Set to 0 or 1. Default: 0. Optional.
+
+=item C<collection>
+
+Wrap records in collection element (<datei>). Set to 0 or 1. Default: 0. Optional.
+
+=back 
+
 =head1 METHODS
  
-=head2 new(file => $file, %options)
+=head2 new(file => $file | fh => $filehandle [, type => XML, xml-declaration => 1, collection => 1])
  
-Create a new Catmandu MAB2 exports which serializes into a $file. Optionally
-provide xml_declaration => 0|1 to in/exclude a XML declaration and, collection => 0|1
-to include a MAB2 collection header.
+Create a new Catmandu MAB2 exports which serializes into a $file.
  
+=head2 add($data)
+
+Add record to exporter. 
+
+=head2 commit()
+
+Close collection (optional) and filehandle.
+
+=head1 SEE ALSO
+
+L<Catmandu::Exporter>, L<Catmandu::Iterable>.
+
 =cut
 
 1;

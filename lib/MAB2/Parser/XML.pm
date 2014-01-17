@@ -23,13 +23,25 @@ filehande with a specified I/O layer.
         # do something        
     }
 
-=head1 SUBROUTINES/METHODS
+=head1 Arguments
 
-=head2 new
+=over
+
+=item C<file>
+ 
+Path to file with MAB2 XML records.
+
+=item C<fh>
+
+Open filehandle for file with MAB2 XML records.
+
+=back
+
+=head1 METHODS
+
+=head2 new($filename | $filehandle)
 
 =cut
-
-# ToDo: use Moo
 
 sub new {
     my $class = shift;
@@ -78,9 +90,9 @@ sub next {
     return;
 }
 
-=head2 _decode()
+=head2 _decode($record)
 
-Deserialize a MAB2 XML record to an array of field arrays.
+Deserialize a MAB2 XML record to an an ARRAY of ARRAYs.
 
 =cut
 
@@ -123,7 +135,7 @@ sub _decode {
 
 =head1 SEEALSO
 
-...
+L<Catmandu::Importer::MAB2>.
 
 =cut
 

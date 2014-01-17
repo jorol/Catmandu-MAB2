@@ -1,13 +1,12 @@
 package MAB2::Writer::Handle;
 
-# ABSTRACT: Utility class that implements a file and filehandle attribute to write to
+# ABSTRACT: Utility class for common MAB2::Writer arguments and methods.
 # VERSION
 
 use strict;
-use charnames ':full';
+use Moo::Role;
 use Carp qw(croak);
 use Encode qw(find_encoding);
-use Moo::Role;
 use Scalar::Util qw(blessed openhandle);
 
 has encoding => (
@@ -37,11 +36,6 @@ has fh => (
     default => sub { \*STDOUT }
 );
 
-has subfield_indicator => (
-    is  => 'rw',
-    default => sub { qq{\N{INFORMATION SEPARATOR ONE}} }
-);
-
 sub _set_fh {
     my ($self) = @_;
 
@@ -58,13 +52,46 @@ sub close_fh {
 }
 
 sub write {
-    my $self = shift;
-    my $fh   = $self->fh;
+    my ($self, @records) = @_;
 
-    foreach my $record (@_) {
+    foreach my $record (@records) {
         $record = $record->{record} if ref $record eq 'HASH';
         $self->_write_record($record);
     }
 }
+
+=head1 Arguments
+
+=over
+
+=item C<file>
+ 
+Path to file.
+
+=item C<fh>
+
+Open filehandle.
+
+=item C<encoding>
+
+Set encoding.
+
+=back
+
+=head1 METHODS
+
+=head2 _set_fh()
+
+Open filehandle (with specified encoding) from file. 
+
+=head2 close_fh()
+
+Close filehandle.
+
+=head2 write()
+
+Write record to filehandle. 
+
+=cut
 
 1;

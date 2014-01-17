@@ -1,6 +1,6 @@
 package MAB2::Parser::Disk;
 
-# ABSTRACT: MAB2 RAW format parser
+# ABSTRACT: MAB2 Diskette format parser
 # VERSION
 
 use strict;
@@ -9,17 +9,16 @@ use charnames qw< :full >;
 use Carp qw(croak);
 use Readonly;
 
+Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
 Readonly my $END_OF_FIELD       => qq{\n};
 Readonly my $END_OF_RECORD      => q{};
 
 =head1 SYNOPSIS
 
-L<MAB2::Parser::Disk> is a parser for MAB2-Diskette records.
+L<MAB2::Parser::Disk> is a parser for MAB2 Diskette records.
 
 L<MAB2::Parser::Disk> expects UTF-8 encoded files as input. Otherwise provide a 
 filehande with a specified I/O layer.
-
-Catmandu...
 
     use MAB2::Parser::Disk;
 
@@ -29,9 +28,23 @@ Catmandu...
         # do something        
     }
 
-=head1 SUBROUTINES/METHODS
+=head1 Arguments
 
-=head2 new
+=over
+
+=item C<file>
+ 
+Path to file with MAB2 Diskette records.
+
+=item C<fh>
+
+Open filehandle for file with MAB2 Diskette records.
+
+=back
+
+=head1 METHODS
+
+=head2 new($filename | $filehandle)
 
 =cut
 
@@ -64,7 +77,7 @@ sub new {
 
 =head2 next()
 
-Reads the next record from MAB2 Diskette input stream. Returns a Perl hash.
+Reads the next record from MAB2 input stream. Returns a Perl hash.
 
 =cut
 
@@ -82,9 +95,9 @@ sub next {
     return;
 }
 
-=head2 _decode()
+=head2 _decode($record)
 
-Deserialize a MAB2 Diskette record to an array of field arrays.
+Deserialize a raw MAB2 record to an ARRAY of ARRAYs.
 
 =cut
 
@@ -136,6 +149,10 @@ sub _decode {
     }
     return \@record;    
 }
+
+=head1 SEE ALSO
+
+L<Catmandu::Importer::MAB2>.
 
 =cut
 

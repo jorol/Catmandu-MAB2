@@ -68,9 +68,31 @@ Catmandu::Importer::MAB2 - Package that imports MAB2 data
         # ...
     });
 
+=head1 Arguments
+
+=over
+
+=item C<file>
+
+Path to file with MAB2 records.
+
+=item C<fh>
+
+Open filehandle for file with MAB2 records.
+
+=item C<id>
+
+Specify MAB2 field tag to get record identifier from. Default: 001. Optional.
+
+=item C<type>
+
+Specify type of MAB2 records: Disk (Diskette), RAW (Band), XML. Default: RAW. Optional. 
+
+=back
+
 =head1 MAB2
 
-The parsed MAB2 is a HASH containing two keys '_id' containing the 001 field (or the system
+The parsed MAB2 record is a HASH containing two keys '_id' containing the 001 field (or the system
 identifier of the record) and 'record' containing an ARRAY of ARRAYs for every field:
 
  {
@@ -95,13 +117,9 @@ identifier of the record) and 'record' containing an ARRAY of ARRAYs for every f
 
 =head1 METHODS
 
-=head2 new(file => $filename,type=>$type,[id=>$id_field])
+=head2 new(file => $filename | fh => $filehandle [,type => $type, id => $field_tag])
 
-Create a new MAB2 importer for $filename. Use STDIN when no filename is given. Type 
-describes the sytax of the MAB records. Currently we support: RAW, XML and Disk.
-
-Optionally provide an 'id' option pointing to the identifier field of the MAB record
-(default 001).
+Create a new MAB2 importer for $filename. Use STDIN when no filename is given. 
 
 =head2 count
 

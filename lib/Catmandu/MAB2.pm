@@ -8,6 +8,8 @@ use warnings;
 
 =head1 CATMANDU MODULES
 
+Catmandu modules for parsing, fixing and writing MAB2 data.
+
 =over
 
 =item * L<Catmandu::Importer::MAB2>
@@ -20,6 +22,8 @@ use warnings;
 
 =head1 INTERNAL MODULES
 
+Parser and writer for MAB2 data. These modules could also be used without Catmandu.
+
 =over
 
 =item * L<MAB2::Parser::Disk>
@@ -27,6 +31,8 @@ use warnings;
 =item * L<MAB2::Parser::RAW>
 
 =item * L<MAB2::Parser::XML>
+
+=item * L<MAB2::Writer::Handle>
 
 =item * L<MAB2::Writer::Disk>
 
@@ -38,9 +44,11 @@ use warnings;
 
 =head1 SUPPORT
 
-You can find documentation for this module with the perldoc command.
+You can find documentation for this distribution with the perldoc command.
 
-    perldoc Catmandu::MAB2
+    perldoc Catmandu::Importer::MAB2
+    perldoc Catmandu::Exporter::MAB2
+    perldoc Catmandu::Fix::mab_map
 
 You can also look for information at:
 
