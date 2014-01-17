@@ -16,16 +16,20 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => "6.30"
   },
   "DISTNAME" => "Catmandu-MAB2",
-  "EXE_FILES" => [],
+  "EXE_FILES" => [
+    "bin/mab2_convert.pl"
+  ],
   "LICENSE" => "perl",
   "NAME" => "Catmandu::MAB2",
   "PREREQ_PM" => {
     "Catmandu" => "0.7",
+    "Encode" => "2.5",
+    "Moo" => "1.0",
     "Readonly" => "1.0",
     "XML::LibXML::Reader" => "2.0"
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.01",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
