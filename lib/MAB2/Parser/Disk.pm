@@ -10,7 +10,7 @@ use Carp qw(croak);
 use Readonly;
 
 Readonly my $SUBFIELD_INDICATOR => qq{\N{INFORMATION SEPARATOR ONE}};
-Readonly my $END_OF_FIELD       => qq{\n};
+Readonly my $END_OF_FIELD       => qq{\N{LINE FEED}};
 Readonly my $END_OF_RECORD      => q{};
 
 =head1 SYNOPSIS
@@ -131,7 +131,7 @@ sub _decode {
         ( $ind =~ m/^[a-z\s]$/xms ) or croak "Invalid indicator: \"$ind\"";
 
         # check if data contains subfield indicators
-        if ( $data =~ m/^\s*(\N{INFORMATION SEPARATOR ONE}|\$)(.*)/ ) {
+        if ( $data =~ m/^\s*($SUBFIELD_INDICATOR|\$)(.*)/ ) {
             my $subfield_indicator = $1;
             my @subfields = split( $subfield_indicator, $2 );
             ( @subfields ) or croak "no subfield data found: \"$tag$ind$data\"";
