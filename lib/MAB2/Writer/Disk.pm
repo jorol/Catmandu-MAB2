@@ -51,11 +51,19 @@ L<MAB2::Writer::Disk> is a MAB2 Diskette serializer.
 
 =head1 Arguments
 
-See L<MAB2::Writer::Handle>.
+=over
+
+=item C<subfield_indicator>
+
+Set subfield separator. Default: INFORMATION SEPARATOR ONE. Optional.
+
+=back
+
+See also L<MAB2::Writer::Handle>.
 
 =head1 METHODS
   
-=head2 new(file => $file | fh => $fh [, encoding => 'UTF-8'])
+=head2 new(file => $file | fh => $fh [, encoding => 'UTF-8', subfield_separator => '$'])
 
 =head2 _write_record($record)
 
