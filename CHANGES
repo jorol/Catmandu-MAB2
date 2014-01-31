@@ -1,5 +1,12 @@
 Changelog for Catmandu-MAB2
 
+0.04 2014-01-31
+ - better handling of record and (sub)field separators
+ - bugfix for MAB2::Writer::Disk
+ - added mab2 converter script
+ - added test status to README
+ - more documentation
+
 0.03 2013-12-18
  - added Parser and Writer for MAB2 Diskette data
 
