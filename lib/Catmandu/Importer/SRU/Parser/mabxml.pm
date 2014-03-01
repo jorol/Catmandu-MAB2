@@ -21,8 +21,8 @@ sub parse {
 =head1 SYNOPSIS
 
 my %attrs = (
-    base => '',
-    query => '',
+    base => 'http://sru.gbv.de/gvk',
+    query => '1940-5758',
     recordSchema => 'mabxml' ,
     parser => 'mabxml' ,
 );
