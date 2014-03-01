@@ -8,7 +8,7 @@ Install the latest distribution from CPAN:
 
 Install the latest developer version from GitHub:
 
-    cpanm git@github.com:jorol/Catmandu-MAB2.git@devel
+    cpanm git://github.com/jorol/Catmandu-MAB2.git@devel
 
 # Contribution
 
