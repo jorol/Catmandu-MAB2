@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# ABSTRACT: Convert records from one MAB2 format to an other
+# VERSION
 # PODNAME: mab2_convert.pl
 
 use utf8;

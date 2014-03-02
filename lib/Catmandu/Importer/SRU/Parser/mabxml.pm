@@ -1,5 +1,8 @@
 package Catmandu::Importer::SRU::Parser::mabxml;
 
+# ABSTRACT: Package transforms SRU responses into Catmandu MAB2
+# VERSION
+
 use Moo;
 use MAB2::Parser::XML;
 use Encode;
