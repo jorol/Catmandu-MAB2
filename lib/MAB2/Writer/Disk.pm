@@ -1,7 +1,7 @@
 package MAB2::Writer::Disk;
 
-#ABSTRACT: MAB2 Diskette format serializer
-#VERSION
+# ABSTRACT: MAB2 Diskette format serializer
+# VERSION
 
 use strict;
 use charnames ':full';

@@ -1,7 +1,7 @@
 package MAB2::Writer::RAW;
 
-#ABSTRACT: MAB2 RAW format serializer
-#VERSION
+# ABSTRACT: MAB2 RAW format serializer
+# VERSION
 
 use strict;
 use Moo;

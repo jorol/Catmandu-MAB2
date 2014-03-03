@@ -1,7 +1,7 @@
 package Catmandu::Exporter::MAB2;
 
-#ABSTRACT: Package that exports MAB2 data
-#VERSION
+# ABSTRACT: Package that exports MAB2 data
+# VERSION
 
 use Catmandu::Sane;
 use MAB2::Writer::Disk;
@@ -59,10 +59,6 @@ sub commit {
     $self->writer->close_fh();
 
 }
-
-=head1 NAME
-
-Catmandu::Exporter::MAB2 - serialize parsed MAB2 data
  
 =head1 SYNOPSIS
  

@@ -181,10 +181,6 @@ sub mab_subfield {
 
 1;
 
-=head1 NAME
-
-Catmandu::Fix::mab_map - copy mab values of one field to a new field
-
 =head1 SYNOPSIS
 
     # Copy all 245 subfields into the my.title hash

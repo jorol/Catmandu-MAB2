@@ -53,10 +53,6 @@ sub generator {
     }
 }
 
-=head1 NAME
-
-Catmandu::Importer::MAB2 - Package that imports MAB2 data
-
 =head1 SYNOPSIS
 
     use Catmandu::Importer::MAB2;

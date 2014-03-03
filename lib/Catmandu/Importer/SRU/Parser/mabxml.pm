@@ -17,10 +17,6 @@ sub parse {
     return $record_hash;
 }
 
-=head1 NAME
-
-  Catmandu::Importer::SRU::Parser::mabxml - Package transforms SRU responses into Catmandu MAB2 
-
 =head1 SYNOPSIS
 
 my %attrs = (
