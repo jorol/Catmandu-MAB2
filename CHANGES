@@ -1,5 +1,9 @@
 Changelog for Catmandu-MAB2
 
+0.06 2014-04-04
+ - XML parser should ignore PerlIO layers
+ - documentation
+
 0.05 2014-03-01
  - added SRU importer
 
