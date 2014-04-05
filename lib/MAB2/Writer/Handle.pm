@@ -1,7 +1,7 @@
 package MAB2::Writer::Handle;
 
-# ABSTRACT: Utility class for common MAB2::Writer arguments and methods.
-# VERSION
+#ABSTRACT: Utility class for common MAB2::Writer arguments and methods.
+#VERSION
 
 use strict;
 use Moo::Role;

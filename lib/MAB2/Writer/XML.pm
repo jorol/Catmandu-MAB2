@@ -1,7 +1,7 @@
 package MAB2::Writer::XML;
 
-# ABSTRACT: MAB2 XML format serializer
-# VERSION
+#ABSTRACT: MAB2 XML format serializer
+#VERSION
 
 use strict;
 use Moo;

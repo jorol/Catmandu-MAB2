@@ -1,7 +1,7 @@
 package Catmandu::Importer::MAB2;
 
-# ABSTRACT: Package that imports MAB2 data
-# VERSION
+#ABSTRACT: Package that imports MAB2 data
+#VERSION
 
 use Catmandu::Sane;
 use Moo;
@@ -57,34 +57,16 @@ sub generator {
 
     use Catmandu::Importer::MAB2;
 
-    my $importer = Catmandu::Importer::MAB2->new(file => "./t/mab2.dat", type=> "RAW");
+    my $importer = Catmandu::Importer::MAB2->new(file => "./t/mab2.dat", type=> "raw");
 
     my $n = $importer->each(sub {
         my $hashref = $_[0];
         # ...
     });
 
-=head1 Arguments
+To convert between MAB2 syntax variants with the L<catmandu> command line client:
 
-=over
-
-=item C<file>
-
-Path to file with MAB2 records.
-
-=item C<fh>
-
-Open filehandle for file with MAB2 records.
-
-=item C<id>
-
-Specify MAB2 field tag to get record identifier from. Default: 001. Optional.
-
-=item C<type>
-
-Specify type of MAB2 records: Disk (Diskette), RAW (Band), XML. Default: RAW. Optional. 
-
-=back
+    catmandu convert MAB2 --type raw to MAB2 --type xml < mab2.dat
 
 =head1 MAB2
 
@@ -113,22 +95,23 @@ identifier of the record) and 'record' containing an ARRAY of ARRAYs for every f
 
 =head1 METHODS
 
-=head2 new(file => $filename | fh => $filehandle [,type => $type, id => $field_tag])
+This module inherits all methods of L<Catmandu::Importer> and by this
+L<Catmandu::Iterable>.
 
-Create a new MAB2 importer for $filename. Use STDIN when no filename is given. 
+=head1 CONFIGURATION
 
-=head2 count
+In addition to the configuration provided by L<Catmandu::Importer> (C<file>,
+C<fh>, etc.) the importer can be configured with the following parameters:
 
-=head2 each(&callback)
+=over
 
-=head2 ...
+=item type
 
-Every Catmandu::Importer is a Catmandu::Iterable all its methods are inherited. The
-Catmandu::Importer::MAB methods are not idempotent: MAB feeds can only be read once.
+Describes the MAB2 syntax variant. Supported values (case ignored) include the
+default value C<xml> for MABxml, C<disk> for human-readable MAB2 serialization 
+and C<plus> or C<raw> for normalized MAB2.
 
-=head1 SEE ALSO
-
-L<Catmandu::Importer>, L<Catmandu::Iterable>;
+=back
 
 =cut
 

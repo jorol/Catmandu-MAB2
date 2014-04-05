@@ -1,7 +1,7 @@
 package MAB2::Parser::XML;
 
-# ABSTRACT: MAB2 XML parser
-# VERSION
+#ABSTRACT: MAB2 XML parser
+#VERSION
 
 use strict;
 use warnings;
@@ -11,9 +11,6 @@ use XML::LibXML::Reader;
 =head1 SYNOPSIS
 
 L<MAB2::Parser::XML> is a parser for MAB2 XML records.
-
-L<MAB2::Parser::XML> expects UTF-8 encoded files as input. Otherwise provide a 
-filehande with a specified I/O layer.
 
     use MAB2::Parser::XML;
 

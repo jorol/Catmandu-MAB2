@@ -1,7 +1,7 @@
 package MAB2::Parser::Disk;
 
-# ABSTRACT: MAB2 Diskette format parser
-# VERSION
+#ABSTRACT: MAB2 Diskette format parser
+#VERSION
 
 use strict;
 use warnings;

@@ -1,7 +1,7 @@
 package MAB2::Parser::RAW;
 
-# ABSTRACT: MAB2 RAW format parser
-# VERSION
+#ABSTRACT: MAB2 RAW format parser
+#VERSION
 
 use strict;
 use warnings;

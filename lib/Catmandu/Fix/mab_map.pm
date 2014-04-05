@@ -1,7 +1,7 @@
 package Catmandu::Fix::mab_map;
 
-# ABSTRACT: copy mab values of one field to a new field
-# VERSION
+#ABSTRACT: copy mab values of one field to a new field
+#VERSION
 
 use Catmandu::Sane;
 use Catmandu::Util qw(:is :data);
@@ -209,9 +209,5 @@ sub mab_subfield {
 
     # Do the same examples now with the fields in 'record2'
     mab_map('245','my.title', -record => 'record2');
-
-=head1 SEE ALSO
-
-L<Catmandu::Fix>, L<Catmandu::Introduction>;
 
 =cut
