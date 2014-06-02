@@ -1,182 +1,114 @@
 package Catmandu::Fix::mab_map;
 
-#ABSTRACT: copy mab values of one field to a new field
-#VERSION
+# ABSTRACT: copy mab values of one field to a new field
+# VERSION
 
 use Catmandu::Sane;
-use Catmandu::Util qw(:is :data);
-use Data::Dumper;
+use Carp qw(confess);
 use Moo;
+use Catmandu::Fix::Has;
 
-has path  => ( is => 'ro', required => 1 );
-has key   => ( is => 'ro', required => 1 );
-has mpath => ( is => 'ro', required => 1 );
-has opts  => ( is => 'ro' );
+has mab_path  => ( fix_arg => 1 );
+has path      => ( fix_arg => 1 );
+has record    => ( fix_opt => 1 );
+has split     => ( fix_opt => 1 );
+has join      => ( fix_opt => 1 );
+has value     => ( fix_opt => 1 );
 
-around BUILDARGS => sub {
-    my ( $orig, $class, $mpath, $path, %opts ) = @_;
-    my ( $p, $key ) = parse_data_path($path) if defined $path && length $path;
-    $orig->(
-        $class,
-        path  => $p,
-        key   => $key,
-        mpath => $mpath,
-        opts  => \%opts
-    );
-};
+sub emit {
+    my ( $self, $fixer ) = @_;
+    my $path       = $fixer->split_path( $self->path );
+    my $record_key = $fixer->emit_string( $self->record // 'record' );
+    my $join_char  = $fixer->emit_string( $self->join // '' );
+    my $mab_path  = $self->mab_path;
 
-sub fix {
-    my ( $self, $data ) = @_;
+    my $field_regex;
+    my ( $field, $ind, $subfield_regex, $from, $to );
 
-    my $path  = $self->path;
-    my $key   = $self->key;
-    my $mpath = $self->mpath;
-    my $opts  = $self->opts || {};
-    $opts->{-join} = '' unless $opts->{-join};
-
-    my $mab_pointer = $opts->{-record} || 'record';
-    my $mab = $data->{$mab_pointer};
-
-    my $fields = mab_field( $mab, $mpath );
-
-    return $data if !@{$fields};
-
-    for my $field (@$fields) {
-        my $field_value = mab_subfield( $field, $mpath );
-
-        next if is_empty($field_value);
-
-        $field_value = [ $opts->{-value} ] if defined $opts->{-value};
-        $field_value = join $opts->{-join}, @$field_value
-            if defined $opts->{-join};
-        $field_value = create_path( $opts->{-in}, $field_value )
-            if defined $opts->{-in};
-        $field_value = path_substr( $mpath, $field_value )
-            unless index( $mpath, '/' ) == -1;
-
-        my $match
-            = [ grep ref, data_at( $path, $data, key => $key, create => 1 ) ]
-            ->[0];
-
-        if ( is_array_ref($match) ) {
-            if ( is_integer($key) ) {
-                $match->[$key] = $field_value;
-            }
-            else {
-                push @{$match}, $field_value;
-            }
-        }
-        else {
-            if ( exists $match->{$key} ) {
-                $match->{$key} .= $opts->{-join} . $field_value;
-            }
-            else {
-                $match->{$key} = $field_value;
-            }
-        }
-    }
-    $data;
-}
-
-sub is_empty {
-    my ($ref) = shift;
-    for (@$ref) {
-        return 0 if defined $_;
-    }
-    return 1;
-}
-
-sub path_substr {
-    my ( $path, $value ) = @_;
-    return $value unless is_string($value);
-    if ( $path =~ /\/(\d+)(-(\d+))?/ ) {
-        my $from = $1;
-        my $to = defined $3 ? $3 - $from + 1 : 0;
-        return substr( $value, $from, $to );
-    }
-    return $value;
-}
-
-sub create_path {
-    my ( $path, $value ) = @_;
-    my ( $p, $key, $guard ) = parse_data_path($path);
-    my $leaf  = {};
-    my $match = [
-        grep ref,
-        data_at( $p, $leaf, key => $key, guard => $guard, create => 1 )
-    ]->[0];
-    $match->{$key} = $value;
-    $leaf;
-}
-
-# Parse a mab_path into parts
-# 245[a]abd  - field=245, ind=a, subfields = a,d,d
-# 008/33-35    - field=008 from index 33 to 35
-sub parse_mab_path {
-    my $path = shift;
-
-    # more than 1 indicator allowed:
-    if ( $path =~ /(\S{3})(\[(.+)\])?([_a-z0-9]+)?(\/(\d+)(-(\d+))?)?/ ) {
-        my $field    = $1;
-        my $ind      = $3;
-        my $subfield = $4 ? "[$4]" : "[A-Za-z0-9_]";
-        my $from     = $6;
-        my $to       = $8;
-        return {
-            field    => $field,
-            ind      => $ind,
-            subfield => $subfield,
-            from     => $from,
-            to       => $to
-        };
+    if ( $mab_path
+        =~ /(\S{3})(\[(.+)\])?([_a-z0-9]+)?(\/(\d+)(-(\d+))?)?/ )
+    {
+        $field          = $1;
+        $ind            = $3;
+        $subfield_regex = defined $4 ? "[$4]" : "[_A-Za-z0-9]";
+        $from           = $6;
+        $to             = $8;
     }
     else {
-        return {};
+        confess "invalid mab path";
     }
-}
 
-# Given a Catmandu::Importer::MAB item return for each matching field the
-# array of subfields
-# Usage: mab_field($data,'245');
-sub mab_field {
-    my ( $mab_item, $path ) = @_;
-    my $mab_path = parse_mab_path($path);
-    my @results  = ();
+    $field_regex = $field;
+    $field_regex =~ s/\*/./g;
 
-    my $field = $mab_path->{field};
-    $field =~ s/\*/./g;
+    my $var  = $fixer->var;
+    my $vals = $fixer->generate_var;
+    my $perl = $fixer->emit_declare_vars( $vals, '[]' );
 
-    for (@$mab_item) {
-        my ( $tag, $ind, @subfields ) = @$_;
-        if ( $tag =~ /$field/ ) {
-            if ( $mab_path->{ind} ) {
-                push( @results, \@subfields ) if $mab_path->{ind} =~ /$ind/;
+    $perl .= $fixer->emit_foreach(
+        "${var}->{${record_key}}",
+        sub {
+            my $var  = shift;
+            my $v    = $fixer->generate_var;
+            my $perl = "";
+
+            $perl .= "next if ${var}->[0] !~ /${field_regex}/;";
+
+            if (defined $ind) {
+                $perl .= "next if (!defined ${var}->[1] || ${var}->[1] ne '${ind}');";
+            }
+
+            if ( $self->value ) {
+                $perl .= $fixer->emit_declare_vars( $v,
+                    $fixer->emit_string( $self->value ) );
             }
             else {
-                push( @results, \@subfields );
+                my $i = $fixer->generate_var;
+                my $add_subfields = sub {
+                    my $start = shift;
+                    "for (my ${i} = ${start}; ${i} < \@{${var}}; ${i} += 2) {"
+                        . "if (${var}->[${i}] =~ /${subfield_regex}/) {"
+                        . "push(\@{${v}}, ${var}->[${i} + 1]);" . "}" . "}";
+                };
+                $perl .= $fixer->emit_declare_vars( $v, "[]" );
+                $perl .= $add_subfields->(2);
+                $perl .= "if (\@{${v}}) {";
+                if ( !$self->split ) {
+                    $perl .= "${v} = join(${join_char}, \@{${v}});";
+                    if ( defined( my $off = $from ) ) {
+                        my $len = defined $to ? $to - $off + 1 : 1;
+                        $perl .= "if (eval { ${v} = substr(${v}, ${off}, ${len}); 1 }) {";
+                    }
+                }
+                $perl .= $fixer->emit_create_path(
+                    $fixer->var,
+                    $path,
+                    sub {
+                        my $var = shift;
+                        if ( $self->split ) {
+                            "if (is_array_ref(${var})) {"
+                                . "push \@{${var}}, ${v};"
+                                . "} else {"
+                                . "${var} = [${v}];" . "}";
+                        }
+                        else {
+                            "if (is_string(${var})) {"
+                                . "${var} = join(${join_char}, ${var}, ${v});"
+                                . "} else {"
+                                . "${var} = ${v};" . "}";
+                        }
+                    }
+                );
+                if ( defined($from) ) {
+                    $perl .= "}";
+                }
+                $perl .= "}";
             }
-
+            $perl;
         }
-    }
-    return \@results;
-}
+    );
 
-# Given a subarray of Catmandu::Importer::MAB subfields return all
-# the subfields that match the $subfield regex
-# Usage: mab_subfield($subfields,'[a]');
-sub mab_subfield {
-    my ( $subfields, $path ) = @_;
-    my $mab_path = &parse_mab_path($path);
-    my $regex    = $mab_path->{subfield};
-
-    my @results = ();
-
-    for ( my $i = 0; $i < @$subfields; $i += 2 ) {
-        my $code = $subfields->[$i];
-        my $val  = $subfields->[ $i + 1 ];
-        push( @results, $val ) if $code =~ /$regex/;
-    }
-    return \@results;
+    $perl;
 }
 
 1;

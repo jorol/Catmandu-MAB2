@@ -9,5 +9,5 @@ pm_to_blib*
 .lwpcookies
 cover_db
 pod2htm*.tmp
-Catmandu-PICA-*
+Catmandu-MAB2-*
 .build/
