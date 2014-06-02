@@ -1,5 +1,11 @@
 Changelog for Catmandu-MAB2
 
+0.07 2014-06-02
+ - transform Fix function to new syntax
+ - fix documentation
+ - fix .gitignore
+ - edit dist.ini
+
 0.06 2014-04-04
  - XML parser should ignore PerlIO layers
  - documentation

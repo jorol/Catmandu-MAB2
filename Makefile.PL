@@ -1,4 +1,3 @@
-
 use strict;
 use warnings;
 
@@ -9,9 +8,8 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Catmandu modules for working with MAB2 data.\r",
+  "ABSTRACT" => "Catmandu modules for working with MAB2 data.",
   "AUTHOR" => "Johann Rolschewski <rolschewski\@gmail.com>",
-  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -22,44 +20,34 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Catmandu::MAB2",
   "PREREQ_PM" => {
-    "Catmandu" => "0.7",
+    "Catmandu" => "0.9103",
+    "Catmandu::SRU" => "0.032",
     "Encode" => "2.5",
     "Moo" => "1.0",
     "Readonly" => "1.0",
     "XML::LibXML::Reader" => "2.0"
   },
-  "TEST_REQUIRES" => {},
-  "VERSION" => "0.06",
+  "VERSION" => "0.07",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
-  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
-  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
-}
+my %FallbackPrereqs = (
+  "Catmandu" => "0.9103",
+  "Catmandu::SRU" => "0.032",
+  "Encode" => "2.5",
+  "Moo" => "1.0",
+  "Readonly" => "1.0",
+  "XML::LibXML::Reader" => "2.0"
+);
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
