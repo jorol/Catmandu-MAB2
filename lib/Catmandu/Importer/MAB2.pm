@@ -49,7 +49,7 @@ sub generator {
         return $self->mab_generator;
     }
     else {
-        die "need MAB2 RAW or XML data";
+        die "need MAB2 Disk, RAW or XML data";
     }
 }
 
@@ -109,7 +109,7 @@ C<fh>, etc.) the importer can be configured with the following parameters:
 
 Describes the MAB2 syntax variant. Supported values (case ignored) include the
 default value C<xml> for MABxml, C<disk> for human-readable MAB2 serialization 
-and C<plus> or C<raw> for normalized MAB2.
+("Diskettenformat") or C<raw> for data-exchange MAB2 serialization ("Bandformat").
 
 =back
 
