@@ -135,6 +135,8 @@ Write XML declaration. Set to 0 or 1. Default: 0. Optional.
 
 Wrap records in collection element (<datei>). Set to 0 or 1. Default: 0. Optional.
 
+=back
+
 =cut
 
 1;
