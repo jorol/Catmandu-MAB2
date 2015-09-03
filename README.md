@@ -1,38 +1,43 @@
+# NAME
+
 Catmandu::MAB2 - Catmandu modules for working with MAB2 data.
 
-# Installation
+# VERSION
 
-Install the latest distribution from CPAN:
+version 0.07
 
-    cpanm Catmandu::MAB2
+# DESCRIPTION
 
-Install the latest developer version from GitHub:
+Catmandu::MAB2 provides methods to work with MAB2 data within the [Catmandu](https://metacpan.org/pod/Catmandu)
+framework. See [Catmandu::Introduction](https://metacpan.org/pod/Catmandu::Introduction) and [http://librecat.org/](http://librecat.org/) for an
+introduction into Catmandu.
 
-    cpanm git://github.com/jorol/Catmandu-MAB2.git@devel
+# CATMANDU MODULES
 
-# Contribution
+- [Catmandu::Importer::MAB2](https://metacpan.org/pod/Catmandu::Importer::MAB2)
+- [Catmandu::Exporter::MAB2](https://metacpan.org/pod/Catmandu::Exporter::MAB2)
+- [Catmandu::Importer::SRU::Parser::mabxml](https://metacpan.org/pod/Catmandu::Importer::SRU::Parser::mabxml)
+- [Catmandu::Fix::mab\_map](https://metacpan.org/pod/Catmandu::Fix::mab_map)
 
-For bug reports and feature requests use <https://github.com/jorol/Catmandu-MAB2/issues>.
+# INTERNAL MODULES
 
-For contributions to the source code create a fork or use the `devel` branch. The master
-branch should only contain merged and stashed changes to appear in Changelog.
+Parser and writer for MAB2 data.
 
-Dist::Zilla and build requirements can be installed this way:
+- [MAB2::Parser::Disk](https://metacpan.org/pod/MAB2::Parser::Disk)
+- [MAB2::Parser::RAW](https://metacpan.org/pod/MAB2::Parser::RAW)
+- [MAB2::Parser::XML](https://metacpan.org/pod/MAB2::Parser::XML)
+- [MAB2::Writer::Handle](https://metacpan.org/pod/MAB2::Writer::Handle)
+- [MAB2::Writer::Disk](https://metacpan.org/pod/MAB2::Writer::Disk)
+- [MAB2::Writer::RAW](https://metacpan.org/pod/MAB2::Writer::RAW)
+- [MAB2::Writer::XML](https://metacpan.org/pod/MAB2::Writer::XML)
 
-    cpan Dist::Zilla
-    dzil authordeps | cpanm
+# AUTHOR
 
-Build and test your current state this way:
+Johann Rolschewski <jorol@cpan.org>
 
-    dzil build
-    dzil test 
-    dzil smoke --release --author # test more
+# COPYRIGHT AND LICENSE
 
-# Status
+This software is copyright (c) 2013 by Johann Rolschewski.
 
-Build and test coverage of the `devel` branch at <https://github.com/jorol/Catmandu-MAB2/>:
-
-[![Build Status](https://travis-ci.org/jorol/Catmandu-MAB2.png)](https://travis-ci.org/jorol/Catmandu-MAB2)
-[![Coverage Status](https://coveralls.io/repos/jorol/Catmandu-MAB2/badge.png?branch=devel)](https://coveralls.io/r/jorol/Catmandu-MAB2?branch=devel)
-[![Kwalitee Score](http://cpants.cpanauthors.org/dist/Catmandu-MAB2.png)](http://cpants.cpanauthors.org/dist/Catmandu-MAB2)
-[![CPAN version](https://badge.fury.io/pl/Catmandu-MAB2.png)](http://badge.fury.io/pl/Catmandu-MAB2)
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
