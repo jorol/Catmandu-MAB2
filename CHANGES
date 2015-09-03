@@ -1,6 +1,7 @@
 Changelog for Catmandu-MAB2
 
 {{$NEXT}}
+ - add mab_each, mab_match and pluck to FIX 
  - switch to Dist::Milla 
 
 0.07 2014-06-02
