@@ -1,7 +1,7 @@
 package Catmandu::Importer::MAB2;
 
 #ABSTRACT: Package that imports MAB2 data
-#VERSION
+our $VERSION = '0.08'; #VERSION
 
 use Catmandu::Sane;
 use Moo;
@@ -52,6 +52,23 @@ sub generator {
         die "need MAB2 Disk, RAW or XML data";
     }
 }
+
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Catmandu::Importer::MAB2 - Package that imports MAB2 data
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -113,6 +130,15 @@ default value C<xml> for MABxml, C<disk> for human-readable MAB2 serialization
 
 =back
 
-=cut
+=head1 AUTHOR
 
-1;
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

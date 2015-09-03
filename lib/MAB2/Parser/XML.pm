@@ -1,48 +1,13 @@
 package MAB2::Parser::XML;
 
 #ABSTRACT: MAB2 XML parser
-#VERSION
+our $VERSION = '0.08'; #VERSION
 
 use strict;
 use warnings;
 use Carp qw<croak>;
 use XML::LibXML::Reader;
 
-=head1 SYNOPSIS
-
-L<MAB2::Parser::XML> is a parser for MAB2 XML records.
-
-    use MAB2::Parser::XML;
-
-    my $parser = MAB2::Parser::XML->new( $filename );
-
-    while ( my $record_hash = $parser->next() ) {
-        # do something        
-    }
-
-=head1 Arguments
-
-=over
-
-=item C<file>
- 
-Path to file with MAB2 XML records.
-
-=item C<fh>
-
-Open filehandle for file with MAB2 XML records.
-
-=item C<string>
-
-XML string with MAB2 XML records.
-
-=back
-
-=head1 METHODS
-
-=head2 new($filename | $filehandle | $string)
-
-=cut
 
 sub new {
     my $class = shift;
@@ -80,11 +45,6 @@ sub new {
     return ( bless $self, $class );
 }
 
-=head2 next()
-
-Reads the next record from MAB2 XML input stream. Returns a Perl hash.
-
-=cut
 
 sub next {
     my $self = shift;
@@ -97,11 +57,6 @@ sub next {
     return;
 }
 
-=head2 _decode($record)
-
-Deserialize a MAB2 XML record to an an ARRAY of ARRAYs.
-
-=cut
 
 sub _decode {
     my $reader = shift;
@@ -140,11 +95,78 @@ sub _decode {
     return \@record;
 }
 
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+MAB2::Parser::XML - MAB2 XML parser
+
+=head1 VERSION
+
+version 0.07
+
+=head1 SYNOPSIS
+
+L<MAB2::Parser::XML> is a parser for MAB2 XML records.
+
+    use MAB2::Parser::XML;
+
+    my $parser = MAB2::Parser::XML->new( $filename );
+
+    while ( my $record_hash = $parser->next() ) {
+        # do something        
+    }
+
+=head1 Arguments
+
+=over
+
+=item C<file>
+
+Path to file with MAB2 XML records.
+
+=item C<fh>
+
+Open filehandle for file with MAB2 XML records.
+
+=item C<string>
+
+XML string with MAB2 XML records.
+
+=back
+
+=head1 METHODS
+
+=head2 new($filename | $filehandle | $string)
+
+=head2 next()
+
+Reads the next record from MAB2 XML input stream. Returns a Perl hash.
+
+=head2 _decode($record)
+
+Deserialize a MAB2 XML record to an an ARRAY of ARRAYs.
+
 =head1 SEEALSO
 
 L<Catmandu::Importer::MAB2>.
 
+=head1 AUTHOR
+
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
-
-1;
-

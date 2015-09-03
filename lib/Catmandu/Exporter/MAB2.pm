@@ -1,7 +1,7 @@
 package Catmandu::Exporter::MAB2;
 
 #ABSTRACT: Package that exports MAB2 data
-#VERSION
+our $VERSION = '0.08'; #VERSION
 
 use Catmandu::Sane;
 use MAB2::Writer::Disk;
@@ -60,8 +60,25 @@ sub commit {
 
 }
  
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Catmandu::Exporter::MAB2 - Package that exports MAB2 data
+
+=head1 VERSION
+
+version 0.07
+
 =head1 SYNOPSIS
- 
+
     use Catmandu::Exporter::MAB2;
  
     my $exporter = Catmandu::Exporter::MAB2->new(file => "mab2.dat", type => "RAW");
@@ -75,7 +92,7 @@ sub commit {
  
     $exporter->add($data);
     $exporter->commit;
- 
+
 =head1 Arguments
 
 =over
@@ -100,14 +117,14 @@ Write XML declaration. Set to 0 or 1. Default: 0. Optional.
 
 Wrap records in collection element (<datei>). Set to 0 or 1. Default: 0. Optional.
 
-=back 
+=back
 
 =head1 METHODS
- 
+
 =head2 new(file => $file | fh => $filehandle [, type => XML, xml-declaration => 1, collection => 1])
- 
+
 Create a new Catmandu MAB2 exports which serializes into a $file.
- 
+
 =head2 add($data)
 
 Add record to exporter. 
@@ -137,6 +154,15 @@ Wrap records in collection element (<datei>). Set to 0 or 1. Default: 0. Optiona
 
 =back
 
-=cut
+=head1 AUTHOR
 
-1;
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

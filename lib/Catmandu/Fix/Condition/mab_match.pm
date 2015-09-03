@@ -1,7 +1,7 @@
 package Catmandu::Fix::Condition::mab_match;
 
 # ABSTRACT: Conditionals on MAB2 fields
-# VERSION
+our $VERSION = '0.08'; # VERSION
 
 use Catmandu::Sane;
 use Catmandu::Fix::mab_map;
@@ -41,12 +41,25 @@ sub emit {
     $perl;
 }
 
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
 =head1 NAME
 
-Catmandu::Fix::Condition::mab_match - Conditionals on PICA fields
+Catmandu::Fix::Condition::mab_match - Conditionals on MAB2 fields
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
-   
+
     # mab_match(PICA_PATH,REGEX)
 
     if mab_match('245','My funny title')
@@ -58,10 +71,23 @@ Catmandu::Fix::Condition::mab_match - Conditionals on PICA fields
 Read our Wiki pages at L<https://github.com/LibreCat/Catmandu/wiki/Fixes> 
 for a complete overview of the Fix language.
 
+=head1 NAME
+
+Catmandu::Fix::Condition::mab_match - Conditionals on PICA fields
+
 =head1 SEE ALSO
 
 L<Catmandu::Fix>
 
-=cut
+=head1 AUTHOR
 
-1;
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

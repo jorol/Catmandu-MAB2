@@ -1,7 +1,7 @@
 package Catmandu::Fix::mab_map;
 
 # ABSTRACT: copy mab values of one field to a new field
-# VERSION
+our $VERSION = '0.08'; # VERSION
 
 use Catmandu::Sane;
 use Carp qw(confess);
@@ -132,6 +132,20 @@ sub emit {
 
 1;
 
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Catmandu::Fix::mab_map - copy mab values of one field to a new field
+
+=head1 VERSION
+
+version 0.07
+
 =head1 SYNOPSIS
 
     # Copy all 245 subfields into the my.title hash
@@ -160,5 +174,16 @@ sub emit {
 
     # Do the same examples now with the fields in 'record2'
     mab_map('245','my.title', -record => 'record2');
+
+=head1 AUTHOR
+
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut

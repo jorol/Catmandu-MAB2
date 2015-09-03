@@ -1,7 +1,7 @@
 package MAB2::Writer::Handle;
 
 #ABSTRACT: Utility class for common MAB2::Writer arguments and methods.
-#VERSION
+our $VERSION = '0.08'; #VERSION
 
 use strict;
 use Moo::Role;
@@ -60,12 +60,29 @@ sub write {
     }
 }
 
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+MAB2::Writer::Handle - Utility class for common MAB2::Writer arguments and methods.
+
+=head1 VERSION
+
+version 0.07
+
 =head1 Arguments
 
 =over
 
 =item C<file>
- 
+
 Path to file.
 
 =item C<fh>
@@ -92,6 +109,15 @@ Close filehandle.
 
 Write record to filehandle. 
 
-=cut
+=head1 AUTHOR
 
-1;
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

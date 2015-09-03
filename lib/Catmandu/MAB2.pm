@@ -2,13 +2,30 @@ package Catmandu::MAB2;
 
 #ABSTRACT: Catmandu modules for working with MAB2 data.
 
-our $VERSION = 0.07;
+our $VERSION = 0.08;
 
 use strict;
 use warnings;
 
+
+1; # End of Catmandu::MAB2
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Catmandu::MAB2 - Catmandu modules for working with MAB2 data.
+
+=head1 VERSION
+
+version 0.07
+
 =head1 DESCRIPTION
- 
+
 Catmandu::MAB2 provides methods to work with MAB2 data within the L<Catmandu>
 framework. See L<Catmandu::Introduction> and L<http://librecat.org/> for an
 introduction into Catmandu.
@@ -49,6 +66,15 @@ Parser and writer for MAB2 data.
 
 =back
 
-=cut
+=head1 AUTHOR
 
-1; # End of Catmandu::MAB2
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
