@@ -1,5 +1,8 @@
 Changelog for Catmandu-MAB2
 
+{{$NEXT}}
+ - switch to Dist::Milla 
+
 0.07 2014-06-02
  - transform Fix function to new syntax
  - fix documentation
