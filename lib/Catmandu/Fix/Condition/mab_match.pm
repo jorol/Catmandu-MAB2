@@ -1,10 +1,10 @@
 package Catmandu::Fix::Condition::mab_match;
 
-# ABSTRACT: Conditionals on PICA fields
+# ABSTRACT: Conditionals on MAB2 fields
 # VERSION
 
 use Catmandu::Sane;
-use Catmandu::Fix::pica_map;
+use Catmandu::Fix::mab_map;
 use Catmandu::Fix::Condition::all_match;
 use Catmandu::Fix::set_field;
 use Catmandu::Fix::remove_field;
