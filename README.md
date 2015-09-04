@@ -1,10 +1,15 @@
+# Status
+
+Build and test coverage of the `devel` branch at <https://github.com/jorol/Catmandu-MAB2/>:
+
+[![Build Status](https://travis-ci.org/jorol/Catmandu-MAB2.png)](https://travis-ci.org/jorol/Catmandu-MAB2)
+[![Coverage Status](https://coveralls.io/repos/jorol/Catmandu-MAB2/badge.png?branch=devel)](https://coveralls.io/r/jorol/Catmandu-MAB2?branch=devel)
+[![Kwalitee Score](http://cpants.cpanauthors.org/dist/Catmandu-MAB2.png)](http://cpants.cpanauthors.org/dist/Catmandu-MAB2)
+[![CPAN version](https://badge.fury.io/pl/Catmandu-MAB2.png)](http://badge.fury.io/pl/Catmandu-MAB2)
+
 # NAME
 
 Catmandu::MAB2 - Catmandu modules for working with MAB2 data.
-
-# VERSION
-
-version 0.07
 
 # DESCRIPTION
 

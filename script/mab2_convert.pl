@@ -1,8 +1,7 @@
 #!/usr/bin/perl
 
-# ABSTRACT: Convert records from one MAB2 format to an other
-# VERSION
 # PODNAME: mab2_convert.pl
+our $VERSION = '0.08';
 
 use utf8;
 use warnings;
@@ -75,3 +74,40 @@ sub convert {
     $writer->end() if $to eq 'XML';
     print "DONE\n";
 }
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+mab2_convert.pl - converter for MAB2 formats
+
+=head1 SYNOPSIS
+
+    Usage: mab2_convert.pl -i mab2raw.dat -o mab2xml.xml -f RAW -t XML
+
+    Description: Convert records from one MAB2 format to an other.
+
+    Options:
+        -i        Specify input file.
+        -o        Specify output file.
+        -f        Specify input format (Disk|RAW|XML).
+        -t        Specify output format (Disk|RAW|XML).
+        
+        --help    Print this documentation
+
+=head1 AUTHOR
+
+Johann Rolschewski <jorol@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Johann Rolschewski.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut

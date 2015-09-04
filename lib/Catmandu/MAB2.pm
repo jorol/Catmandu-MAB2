@@ -1,7 +1,5 @@
 package Catmandu::MAB2;
 
-#ABSTRACT: Catmandu modules for working with MAB2 data.
-
 our $VERSION = 0.08;
 
 use strict;
@@ -19,10 +17,6 @@ __END__
 =head1 NAME
 
 Catmandu::MAB2 - Catmandu modules for working with MAB2 data.
-
-=head1 VERSION
-
-version 0.07
 
 =head1 DESCRIPTION
 

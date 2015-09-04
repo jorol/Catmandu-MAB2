@@ -1,7 +1,7 @@
 package Catmandu::Fix::mab_map;
 
-# ABSTRACT: copy mab values of one field to a new field
-our $VERSION = '0.08'; # VERSION
+
+our $VERSION = '0.08';
 
 use Catmandu::Sane;
 use Carp qw(confess);
@@ -141,10 +141,6 @@ __END__
 =head1 NAME
 
 Catmandu::Fix::mab_map - copy mab values of one field to a new field
-
-=head1 VERSION
-
-version 0.07
 
 =head1 SYNOPSIS
 

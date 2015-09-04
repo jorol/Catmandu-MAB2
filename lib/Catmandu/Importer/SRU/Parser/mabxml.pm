@@ -1,7 +1,6 @@
 package Catmandu::Importer::SRU::Parser::mabxml;
 
-#ABSTRACT: Package transforms SRU responses into Catmandu MAB2
-our $VERSION = '0.08'; #VERSION
+our $VERSION = '0.08';
 
 use Moo;
 use MAB2::Parser::XML;
@@ -27,10 +26,6 @@ __END__
 =head1 NAME
 
 Catmandu::Importer::SRU::Parser::mabxml - Package transforms SRU responses into Catmandu MAB2
-
-=head1 VERSION
-
-version 0.07
 
 =head1 SYNOPSIS
 

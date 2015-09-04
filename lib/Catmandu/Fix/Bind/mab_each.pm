@@ -1,7 +1,6 @@
 package Catmandu::Fix::Bind::mab_each;
 
-# ABSTRACT: a binder that loops over MAB2 fields
-our $VERSION = '0.08'; # VERSION
+our $VERSION = '0.08';
 
 use Moo;
 use Catmandu::Util;
@@ -53,10 +52,6 @@ __END__
 =head1 NAME
 
 Catmandu::Fix::Bind::mab_each - a binder that loops over MAB2 fields
-
-=head1 VERSION
-
-version 0.07
 
 =head1 SYNOPSIS
 
