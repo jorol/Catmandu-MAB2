@@ -2,6 +2,11 @@ Changelog for Catmandu-MAB2
 
 {{$NEXT}}
 
+0.09  2015-09-04 09:30:02 CEST
+ - add badges
+ - update build files
+ - bugfix for Version numbers
+
 0.08  2015-09-03 19:43:46 CEST
  - add mab_each, mab_match and pluck to FIX 
  - switch to Dist::Milla 

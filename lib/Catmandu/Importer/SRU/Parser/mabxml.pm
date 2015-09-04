@@ -1,6 +1,6 @@
 package Catmandu::Importer::SRU::Parser::mabxml;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use Moo;
 use MAB2::Parser::XML;
