@@ -1,10 +1,10 @@
 {
-   "abstract" : "Catmandu modules for working with MAB2 data.",
+   "abstract" : "Catmandu modules for working with MAB2 data. ",
    "author" : [
       "Johann Rolschewski <jorol@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.039, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Dist::Zilla version 5.039, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -37,12 +37,21 @@
       },
       "runtime" : {
          "requires" : {
-            "Catmandu" : "0.9103",
+            "Catmandu" : "0.94",
             "Catmandu::SRU" : "0.032",
-            "Encode" : "2.5",
             "Moo" : "1.0",
             "Readonly" : "1.0",
-            "XML::LibXML::Reader" : "2.0"
+            "XML::LibXML::Reader" : "2.0",
+            "perl" : "v5.10.1"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Software::License" : "0.103010",
+            "Test::Exception" : "0.32",
+            "Test::More" : "1.001003",
+            "Test::Pod" : "0",
+            "Test::Warn" : "0"
          }
       }
    },
@@ -58,7 +67,7 @@
          "web" : "https://github.com/jorol/Catmandu-MAB2"
       }
    },
-   "version" : "0.07",
+   "version" : "0.08",
    "x_contributors" : [
       "Johann Rolschewski <rolschewski@gmail.com>"
    ]
