@@ -22,6 +22,7 @@ sub mab_generator {
         $file = MAB2::Parser::RAW->new( $self->fh );
     }
     elsif ( $type eq 'xml' ) {
+        $self->{encoding} = ':raw'; # set encoding to :raw to drop PerlIO layers, as required by libxml2
         $file = MAB2::Parser::XML->new( $self->fh );
     }
     elsif ( $type eq 'disk' ) {
