@@ -1,6 +1,6 @@
 package Catmandu::Importer::MAB2;
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 use Catmandu::Sane;
 use Moo;

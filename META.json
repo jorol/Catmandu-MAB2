@@ -26,7 +26,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.034"
+            "Module::Build::Tiny" : "0.039"
          }
       },
       "develop" : {
@@ -67,7 +67,7 @@
          "web" : "https://github.com/jorol/Catmandu-MAB2"
       }
    },
-   "version" : "0.09",
+   "version" : "0.10",
    "x_contributors" : [
       "Johann Rolschewski <rolschewski@gmail.com>"
    ]
