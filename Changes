@@ -1,6 +1,8 @@
 Changelog for Catmandu-MAB2
 
 {{$NEXT}}
+
+0.11  2015-09-30 15:35:54 CEST
  - ISSUE-7: Fix mab_each single execution bug
 
 0.10  2015-09-28 16:50:23 CEST
