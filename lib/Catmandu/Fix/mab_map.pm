@@ -1,7 +1,7 @@
 package Catmandu::Fix::mab_map;
 
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Catmandu::Sane;
 use Carp qw(confess);

@@ -1,6 +1,6 @@
 package MAB2::Writer::Handle;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use strict;
 use Moo::Role;

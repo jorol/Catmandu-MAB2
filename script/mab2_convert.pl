@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # PODNAME: mab2_convert.pl
-our $VERSION = '0.08';
+our $VERSION = '0.11';
 
 use utf8;
 use warnings;
