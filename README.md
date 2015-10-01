@@ -34,7 +34,7 @@ Parser and writer for MAB2 data.
 
 # AUTHOR
 
-Johann Rolschewski <jorol@cpan.org>
+Johann Rolschewski &lt;jorol@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
