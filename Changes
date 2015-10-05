@@ -1,6 +1,7 @@
 Changelog for Catmandu-MAB2
 
 {{$NEXT}}
+ - Remove outdated Makefile.PL
 
 0.12  2015-10-01 10:51:44 CEST
  - fix version
