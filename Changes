@@ -1,6 +1,9 @@
 Changelog for Catmandu-MAB2
 
 {{$NEXT}}
+
+0.13  2015-11-24 11:31:59 CET
+ - ISSUE-8: Test 07-mab-each.t fails
  - Remove outdated Makefile.PL
 
 0.12  2015-10-01 10:51:44 CEST

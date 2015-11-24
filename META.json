@@ -4,7 +4,7 @@
       "Johann Rolschewski <jorol@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.039, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Dist::Zilla version 5.041, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -15,12 +15,12 @@
    "name" : "Catmandu-MAB2",
    "no_index" : {
       "directory" : [
-         "t",
-         "xt",
+         "eg",
+         "examples",
          "inc",
          "share",
-         "eg",
-         "examples"
+         "t",
+         "xt"
       ]
    },
    "prereqs" : {
@@ -37,11 +37,9 @@
       },
       "runtime" : {
          "requires" : {
-            "Catmandu" : "0.94",
+            "Catmandu" : "0.9504",
             "Catmandu::SRU" : "0.032",
-            "Moo" : "1.0",
-            "Readonly" : "1.0",
-            "XML::LibXML::Reader" : "2.0",
+            "Readonly" : "0",
             "perl" : "v5.10.1"
          }
       },
@@ -67,7 +65,7 @@
          "web" : "https://github.com/jorol/Catmandu-MAB2"
       }
    },
-   "version" : "0.12",
+   "version" : "0.13",
    "x_contributors" : [
       "Johann Rolschewski <rolschewski@gmail.com>"
    ]
