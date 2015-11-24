@@ -1,10 +1,8 @@
 requires 'perl', 'v5.10.1';
 
-requires 'Catmandu', '>= 0.94';
+requires 'Catmandu', '0.9504';
 requires 'Catmandu::SRU', '>= 0.032';
-requires 'Moo', '>= 1.0';
-requires 'Readonly', '>= 1.0';
-requires 'XML::LibXML::Reader', '>= 2.0';
+requires 'Readonly';
 
 on 'test', sub {
   requires 'Test::Exception', '0.32';
