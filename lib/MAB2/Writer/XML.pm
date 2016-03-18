@@ -24,7 +24,7 @@ sub _write_record {
     my $fh = $self->fh;
 
     if ( $record->[0][0] eq 'LDR' ) {
-        my $leader = shift( @{$record} );
+        my $leader = $record->[0];
         my ( $status, $typ ) = ( $1, $2 )
             if $leader->[3] =~ /^\d{5}(\w)M2\.0\d*\s*(\w)$/;
         print $fh
@@ -37,6 +37,7 @@ sub _write_record {
 
     foreach my $field (@$record) {
 
+        next if $field->[0] eq 'LDR';
         if ( $field->[2] eq '_' ) {
             print $fh
                 "<feld nr=\"$field->[0]\" ind=\"$field->[1]\">$field->[3]</feld>\n";

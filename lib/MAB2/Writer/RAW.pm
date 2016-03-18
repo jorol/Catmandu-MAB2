@@ -18,8 +18,8 @@ sub _write_record {
     my $fh = $self->fh;
 
     if ( $record->[0][0] eq 'LDR' ) {
-        my $leader = shift( @{$record} );
-        print $fh "$leader";
+        my $leader = $record->[0];
+        print $fh $leader->[3];
     }
     else {
         # set default record leader
@@ -27,7 +27,7 @@ sub _write_record {
     }
 
     foreach my $field (@$record) {
-
+        next if $field->[0] eq 'LDR';
         if ( $field->[2] eq '_' ) {
             print $fh $field->[0], $field->[1], $field->[3], $END_OF_FIELD;
         }

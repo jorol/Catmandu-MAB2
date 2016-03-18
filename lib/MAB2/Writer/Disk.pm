@@ -25,7 +25,7 @@ sub _write_record {
     my $SUBFIELD_INDICATOR = $self->subfield_indicator;
 
     if ( $record->[0][0] eq 'LDR' ) {
-        my $leader = shift( @{$record} );
+        my $leader = $record->[0];
         print $fh "### ", $leader->[3], $END_OF_FIELD;
     }
     else {
@@ -34,7 +34,7 @@ sub _write_record {
     }
 
     foreach my $field (@$record) {
-
+        next if $field->[0] eq 'LDR';
         if ( $field->[2] eq '_' ) {
             print $fh $field->[0], $field->[1], $field->[3], $END_OF_FIELD;
         }

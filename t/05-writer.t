@@ -13,7 +13,6 @@ my ($fh, $filename) = tempfile();
 my $writer = MAB2::Writer::XML->new( fh => $fh, xml_declaration => 1, collection => 1 );
 
 my @mab_records = (
-
     [
       ['001', ' ', '_', '47918-4'],
       ['310', ' ', '_', 'Daß Ümläüt'],
@@ -21,7 +20,8 @@ my @mab_records = (
     ],
     {
       record => [
-        ['406', 'a', j => '1990', k => '2000']
+        ['LDR', ' ', '_', '11111nM2.01200024      h'],
+        ['406', 'a', j => '1990', k => '2000'],
       ]
     }
 );
@@ -72,7 +72,7 @@ $out = do { local (@ARGV,$/)=$filename; <> };
 
 is $out, <<'MABRAW';
 99999nM2.01200024      h001 47918-4310 Daß Ümläüt406bj1983
-99999nM2.01200024      h406aj1990k2000
+11111nM2.01200024      h406aj1990k2000
 MABRAW
 
 ($fh, $filename) = tempfile();
@@ -89,7 +89,7 @@ $out = do { local $/; <$fh> };
 
 is $out, <<'MABRAW';
 99999nM2.01200024      h001 47918-4310 Daß Ümläüt406bj1983
-99999nM2.01200024      h406aj1990k2000
+11111nM2.01200024      h406aj1990k2000
 MABRAW
 
 ($fh, $filename) = tempfile();
@@ -109,7 +109,7 @@ is $out, <<'MABDISK1';
 310 Daß Ümläüt
 406bj1983
 
-### 99999nM2.01200024      h
+### 11111nM2.01200024      h
 406aj1990k2000
 
 MABDISK1
@@ -131,7 +131,7 @@ is $out, <<'MABDISK2';
 310 Daß Ümläüt
 406b$j1983
 
-### 99999nM2.01200024      h
+### 11111nM2.01200024      h
 406a$j1990$k2000
 
 MABDISK2
