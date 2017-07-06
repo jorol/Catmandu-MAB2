@@ -1,4 +1,4 @@
-requires 'perl', 'v5.10.1';
+requires 'perl', 'v5.14.0';
 
 requires 'Catmandu', '1.0601';
 requires 'Catmandu::SRU', '>= 0.032';
