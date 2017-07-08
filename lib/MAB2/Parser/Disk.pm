@@ -1,6 +1,6 @@
 package MAB2::Parser::Disk;
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 use strict;
 use warnings;
