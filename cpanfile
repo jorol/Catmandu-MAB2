@@ -1,7 +1,7 @@
 requires 'perl', 'v5.14.0';
 
 requires 'Catmandu', '1.0601';
-requires 'Catmandu::SRU', '0.400';
+requires 'Catmandu::SRU', '0.040';
 requires 'Readonly';
 
 on 'test', sub {
