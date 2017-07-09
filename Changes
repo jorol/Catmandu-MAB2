@@ -2,6 +2,9 @@ Changelog for Catmandu-MAB2
 
 {{$NEXT}}
 
+0.18  2017-07-09 13:08:05 CEST
+ - set required version of Catmandu::SRU
+
 0.17  2017-07-08 19:35:40 CEST
  - get XML as string
 
