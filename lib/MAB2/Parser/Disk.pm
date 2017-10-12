@@ -78,7 +78,7 @@ sub _decode {
         }
 
         if ( my ( $tag, $ind, $data )
-            = $field =~ m/(\d{3})([A-Za-z0-9\s])(.*)/ )
+            = $field =~ m/^(\d{3})([A-Za-z0-9\s])(.*)/ )
         {
             # check if data contains subfield indicators
             if ( $data =~ m/\s*($SUBFIELD_INDICATOR|\$)(.*)/ ) {
