@@ -23,4 +23,4 @@ require_ok 'MAB2::Parser::XML';
 require_ok 'MAB2::Writer::RAW';
 require_ok 'MAB2::Writer::XML';
 
-done_testing 14;
+done_testing;
