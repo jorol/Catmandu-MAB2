@@ -36,7 +36,7 @@ sub emit {
         $to             = $8;
     }
     else {
-        confess "invalid mab path";
+        Catmandu::Error->throw('invalid mab path');
     }
 
     $field_regex = $field;
