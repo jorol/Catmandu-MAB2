@@ -1,12 +1,16 @@
 use strict;
 use warnings;
+use Test::Exception;
 use Test::More;
 use Test::Warn;
 use utf8;
 
+use MAB2::Parser::Disk;
+use MAB2::Parser::RAW;
+use MAB2::Parser::XML;
+
 note 'MAB2::Parser::XML';
 {
-    use MAB2::Parser::XML;
     my $parser = MAB2::Parser::XML->new('./t/mab2.xml');
     isa_ok( $parser, 'MAB2::Parser::XML' );
     my $record = $parser->next();
@@ -34,7 +38,6 @@ note 'MAB2::Parser::XML';
 
 note 'MAB2::Parser::RAW';
 {
-    use MAB2::Parser::RAW;
     my $parser = MAB2::Parser::RAW->new('./t/mab2.dat');
     isa_ok( $parser, 'MAB2::Parser::RAW' );
     my $record = $parser->next();
@@ -49,20 +52,22 @@ note 'MAB2::Parser::RAW';
     ok( $parser->next()->{_id} eq '54251-9', 'next record' );
 }
 
+note 'MAB2::Parser::RAW exeptions';
+{
+    throws_ok { MAB2::Parser::RAW->new('mab2.xxx') } qr/^file/, 'got exeption';
+}
+
 note 'MAB2::Parser::RAW warnings';
 {
-
-    use MAB2::Parser::RAW;
     my $parser = MAB2::Parser::RAW->new('./t/mab2_faulty.dat');
     warning_like {$parser->next()} qr/^record terminator not found/, "got warning record terminator";
     warning_like {$parser->next()} qr/^faulty record leader/, "got warning faulty leader";
-    warning_like {$parser->next()} qr/^faulty field structure/, "got warning faulty field";
+    warning_like {$parser->next()} qr/^faulty field/, "got warning faulty field";
+    warning_like {$parser->next()} qr/^faulty field structure/, "got warning faulty field structure";
 }
 
 note 'MAB2::Parser::Disk';
 {
-
-    use MAB2::Parser::Disk;
     my $parser = MAB2::Parser::Disk->new('./t/mab2disk.dat');
     isa_ok( $parser, 'MAB2::Parser::Disk' );
     my $record = $parser->next();
@@ -78,13 +83,17 @@ note 'MAB2::Parser::Disk';
 
 }
 
+note 'MAB2::Parser::Disk exeptions';
+{
+    throws_ok { MAB2::Parser::Disk->new('mab2disk.xxx') } qr/^file/, 'got exeption';
+}
+
 note 'MAB2::Parser::Disk warnings';
 {
-
-    use MAB2::Parser::Disk;
     my $parser = MAB2::Parser::Disk->new('./t/mab2disk_faulty.dat');
     warning_like {$parser->next()} qr/^faulty record leader/, "got warning faulty leader";
-    warning_like {$parser->next()} qr/^faulty field structure/, "got warning faulty field";
+    warning_like {$parser->next()} qr/^faulty field/, "got warning faulty field";
+    warning_like {$parser->next()} qr/^faulty field structure/, "got warning faulty field structure";
 }
 
 done_testing;
