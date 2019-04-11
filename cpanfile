@@ -3,6 +3,9 @@ requires 'perl', 'v5.14.0';
 requires 'Catmandu', '1.0601';
 requires 'Catmandu::SRU', '0.040';
 requires 'Readonly';
+requires 'Moo';
+requires 'Moo::Role';
+requires 'XML::LibXML::Reader';
 
 on 'test', sub {
   requires 'Test::Exception', '0.32';
